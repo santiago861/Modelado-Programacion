@@ -5,7 +5,8 @@ import java.awt.Color;
 
 /**
  *
- * @author Sango
+ * @author Yanez Diaz Carlos
+ * @author Reyes Medina Santiago Ivan
  */
 public class Practica2 {
     /**
