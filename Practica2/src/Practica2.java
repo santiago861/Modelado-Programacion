@@ -4,14 +4,16 @@ import javax.imageio.ImageIO;
 import java.awt.Color;
 
 /**
- *
  * @author Yanez Diaz Carlos
  * @author Reyes Medina Santiago Ivan
  */
+
 public class Practica2 {
+
     /**
      * @param args the command line arguments
      */
+
     public static void main(String[] args) {
         System.out.println("Hola Mundo");
         BufferedImage i = null;
@@ -20,6 +22,7 @@ public class Practica2 {
         /* Este bloque de codigo va a leer la imagen foto.jpg si esta existe en la ruta especificada, de lo contrario
          * lanzara un mensaje de error
          */
+        
         try{
             File imageFile = new File("imagenes/foto.jpg"); 
             if (imageFile.exists()) {
@@ -58,6 +61,13 @@ public class Practica2 {
                 c2a = c4.getGreen();
                 c3a = c4.getBlue();
 
+                /*
+                * Este bloque de calculo se encarga multiplican los componentes originales de color (rojo, verde y azul)
+                * por factores especificos y luego los suman para obtener los nuevos valores y asi obtener nuevos colores
+                *
+                * Los valores se almacenaron anteriormente como enteros y se asegura de que esten en el rango valido
+                * de 0 a 255 para evitar desbordamientos o valores negativos.
+                */
                 c11 = (int) ((c1 * .393) + (c2a * .769) + (c3a * .189));
                 c22 = (int) ((c1 * .349) + (c2a * .686) + (c3a * .168));
                 c33 = (int) ((c1 * .272) + (c2a * .534) + (c3a * .131));
