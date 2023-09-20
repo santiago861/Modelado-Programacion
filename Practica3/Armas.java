@@ -3,30 +3,30 @@
  * Armas: arpones, lanzallamas, cañones, sierra, metralleta
  */
 public class Armas {
-    private String name;
-    private int attack, cost; 
+    private String nombre;
+    private int ataque, costo; 
     
     public Armas(String n) {
         if (n == "arpones") {
-            this.name = "arpones";  
-            this.attack = 3; 
-            this.cost = 2;
+            this.nombre = "arpones";  
+            this.ataque = 2; 
+            this.costo = 2;
         } else if (n == "lanzallamas"){
-            this.name = "lanzallamas"; 
-            this.attack = 5; 
-            this.cost = 4;
+            this.nombre = "lanzallamas"; 
+            this.ataque = 3; 
+            this.costo = 3;
         } else if (n == "cañones"){
-            this.name = "cañones"; 
-            this.attack = 2; 
-            this.cost = 4;
+            this.nombre = "cañones"; 
+            this.ataque = 3; 
+            this.costo = 2;
         } else if (n == "sierra"){
-            this.name = "sierra"; 
-            this.attack = 5; 
-            this.cost = 4;
+            this.nombre = "sierra"; 
+            this.ataque = 3; 
+            this.costo = 2;
         } else if (n == "metralleta"){
-            this.name = "metralleta"; 
-            this.attack = 2; 
-            this.cost = 4;
+            this.nombre = "metralleta"; 
+            this.ataque = 4; 
+            this.costo = 4;
         } 
     }
 }

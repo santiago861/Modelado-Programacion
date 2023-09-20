@@ -3,22 +3,22 @@
  * Carrocerıa: casual, camion, deportiva
  */
 public class Carroceria {
-    private String name;
-    private int defense, cost; 
+    private String nombre;
+    private int defensa, costo; 
     
     public Carroceria(String n) {
         if (n == "casual") {
-            this.name = "casual";  
-            this.defense = 3; 
-            this.cost = 2;
+            this.nombre = "casual";  
+            this.defensa = 3; 
+            this.costo = 2;
         } else if (n == "camion"){
-            this.name = "camion"; 
-            this.defense = 5; 
-            this.cost = 4;
+            this.nombre = "camion"; 
+            this.defensa = 5; 
+            this.costo = 4;
         } else if (n == "deportiva"){
-            this.name = "deportiva"; 
-            this.defense = 2; 
-            this.cost = 4;
+            this.nombre = "deportiva"; 
+            this.defensa = 2; 
+            this.costo = 1;
         } 
     }
 }

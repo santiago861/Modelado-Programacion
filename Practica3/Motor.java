@@ -3,22 +3,22 @@
  * Motor: deportivo, diesel, turbo
  */
 public class Motor {
-    private String name;
-    private int speed, cost; 
+    private String nombre;
+    private int velocidad, costo; 
     
     public Motor(String n) {
         if (n == "deportivo") {
-            this.name = "deportivo";  
-            this.speed = 3; 
-            this.cost = 2;
+            this.nombre = "deportivo";  
+            this.velocidad = 4; 
+            this.costo = 3;
         } else if (n == "diesel"){
-            this.name = "diesel"; 
-            this.speed = 5; 
-            this.cost = 4;
+            this.nombre = "diesel"; 
+            this.velocidad = 3; 
+            this.costo = 2;
         } else if (n == "turbo"){
-            this.name = "turbo"; 
-            this.speed = 2; 
-            this.cost = 4;
+            this.nombre = "turbo"; 
+            this.velocidad = 5; 
+            this.costo = 4;
         } 
     }
 }

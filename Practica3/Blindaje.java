@@ -3,22 +3,22 @@
  * Blindaje: simple, reforzado, tanque
  */
 public class Blindaje {
-    private String name;
-    private int defense, cost; 
+    private String nombre;
+    private int defensa, costo; 
     
     public Blindaje(String n) {
         if (n == "simple") {
-            this.name = "simple";  
-            this.defense = 3; 
-            this.cost = 2;
+            this.nombre = "simple";  
+            this.defensa = 2; 
+            this.costo = 1;
         } else if (n == "reforzado"){
-            this.name = "reforzado"; 
-            this.defense = 5; 
-            this.cost = 4;
+            this.nombre = "reforzado"; 
+            this.defensa = 3; 
+            this.costo = 2;
         } else if (n == "tanque"){
-            this.name = "tanque"; 
-            this.defense = 2; 
-            this.cost = 4;
+            this.nombre = "tanque"; 
+            this.defensa = 5; 
+            this.costo = 4;
         } 
     }
 }
