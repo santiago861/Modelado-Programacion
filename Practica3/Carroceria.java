@@ -7,15 +7,15 @@ public class Carroceria {
     private int defensa, costo; 
     
     public Carroceria(String n) {
-        if (n == "casual") {
+        if ("casual".equals(n)) {
             this.nombre = "casual";  
             this.defensa = 3; 
             this.costo = 2;
-        } else if (n == "camion"){
+        } else if ("camion".equals(n)){
             this.nombre = "camion"; 
             this.defensa = 5; 
             this.costo = 4;
-        } else if (n == "deportiva"){
+        } else if ("deportiva".equals(n)){
             this.nombre = "deportiva"; 
             this.defensa = 2; 
             this.costo = 1;

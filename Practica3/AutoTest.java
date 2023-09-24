@@ -7,6 +7,7 @@ public class AutoTest{
         int op;
 
         do {
+            int puntosIniciales = 13; 
             System.out.println("--------------Fabrica de Autos-----------------");
             System.out.println("| 1. Crea tu propio carro                     |");
             System.out.println("| 2. Crea un carro al azar                    |");
@@ -22,6 +23,7 @@ public class AutoTest{
                 try {
                     //Hacemos la seleccion de llantas al carro
                     System.out.println("!Vamos a crear tu carro!");
+                    System.out.println("Usted dispone de " + puntosIniciales + " puntos");
                     System.out.println("");
                     System.out.println("Escribe el tipo de llanta que desees:");
                     System.out.println("simple");
@@ -76,6 +78,30 @@ public class AutoTest{
                     Auto nuevAuto = AutoFactory.crearAuto(tipollanta, tipoMotor, tipoCarroceria, tipoBlindaje, tipoArmas);
 
                     System.out.println(nuevAuto.toString());
+                    
+                    boolean entradaCorrecta; 
+                    do {
+                        entradaCorrecta = true;
+                        System.out.println("Considerando el precio en puntos del nuevo auto, ¿desea comprarlo?. Introduzca el numero entero para confirmar su decision \n");
+                        System.out.println("1. SI");
+                        System.out.println("2. NO");
+
+                        String respuesta = entrada.next();
+                        if (respuesta.equals("1")) {
+                            if (puntosIniciales < nuevAuto.getCostoTotal()) {
+                                System.out.println("No cuentas con los puntos sufiecientes para realizar la compra");
+                            } else if (puntosIniciales >= nuevAuto.getCostoTotal()) {
+                                System.out.println("Compra realizada con exito");
+                            }
+                        } else if (respuesta.equals("2")) {
+                            System.out.println("La compra fue cancelada con exito");
+                        } else {
+                            System.out.println("La opcion proporcionada es incorrecta, ingrese una opcion valida por favor...");
+                            entradaCorrecta = false;
+                        }
+
+                    } while (entradaCorrecta == false); 
+                    
 
                 } catch (Exception e) {
                     System.out.println("Ocurrio un error durante la creacion de tu auto");

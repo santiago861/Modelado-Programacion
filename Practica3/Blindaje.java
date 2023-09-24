@@ -7,15 +7,15 @@ public class Blindaje {
     private int defensa, costo; 
     
     public Blindaje(String n) {
-        if (n == "simple") {
+        if ("simple".equals(n)) {
             this.nombre = "simple";  
             this.defensa = 2; 
             this.costo = 1;
-        } else if (n == "reforzado"){
+        } else if ("reforzado".equals(n)){
             this.nombre = "reforzado"; 
             this.defensa = 3; 
             this.costo = 2;
-        } else if (n == "tanque"){
+        } else if ("tanque".equals(n)){
             this.nombre = "tanque"; 
             this.defensa = 5; 
             this.costo = 4;

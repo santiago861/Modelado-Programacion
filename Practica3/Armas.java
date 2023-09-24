@@ -7,23 +7,23 @@ public class Armas {
     private int ataque, costo; 
     
     public Armas(String n) {
-        if (n == "arpones") {
+        if ("arpones".equals(n)) {
             this.nombre = "arpones";  
             this.ataque = 2; 
             this.costo = 2;
-        } else if (n == "lanzallamas"){
+        } else if ("lanzallamas".equals(n)){
             this.nombre = "lanzallamas"; 
             this.ataque = 3; 
             this.costo = 3;
-        } else if (n == "cañones"){
+        } else if ("cañones".equals(n)){
             this.nombre = "cañones"; 
             this.ataque = 3; 
             this.costo = 2;
-        } else if (n == "sierra"){
+        } else if ("sierra".equals(n)){
             this.nombre = "sierra"; 
             this.ataque = 3; 
             this.costo = 2;
-        } else if (n == "metralleta"){
+        } else if ("metralleta".equals(n)){
             this.nombre = "metralleta"; 
             this.ataque = 4; 
             this.costo = 4;

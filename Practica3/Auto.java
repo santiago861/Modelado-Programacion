@@ -18,6 +18,11 @@ public class Auto {
         this.costoTotal = costoTotal; 
     }
 
+    public int getCostoTotal(){
+        return costoTotal;
+    } 
+
+    @Override
     public String toString() {
         String cadena1 = "Se ha creado tu auto exitosamente \n"; 
         String cadena2 = "Las llantas son de tipo " + llantas.getNombre() + ", el motor es de tipo " + motor.getNombre() + ", la carroceria es de tipo "

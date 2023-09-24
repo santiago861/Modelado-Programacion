@@ -7,15 +7,15 @@ public class Motor {
     private int velocidad, costo; 
     
     public Motor(String n) {
-        if (n == "deportivo") {
+        if ("deportivo".equals(n)) {
             this.nombre = "deportivo";  
             this.velocidad = 4; 
             this.costo = 3;
-        } else if (n == "diesel"){
+        } else if ("diesel".equals(n)){
             this.nombre = "diesel"; 
             this.velocidad = 3; 
             this.costo = 2;
-        } else if (n == "turbo"){
+        } else if ("turbo".equals(n)){
             this.nombre = "turbo"; 
             this.velocidad = 5; 
             this.costo = 4;
