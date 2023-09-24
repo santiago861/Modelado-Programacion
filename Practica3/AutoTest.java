@@ -10,7 +10,7 @@ public class AutoTest{
             int puntosIniciales = 13; 
             System.out.println("--------------Fabrica de Autos-----------------");
             System.out.println("| 1. Crea tu propio carro                     |");
-            System.out.println("| 2. Crea un carro al azar                    |");
+            System.out.println("| 2. Escoger un carro predeterminado          |");
             System.out.println("| 3. Sal del programa                         |");
             System.out.println("-----------------------------------------------");
             System.out.println("");
@@ -110,8 +110,54 @@ public class AutoTest{
                 break;
 
                 case 2:
-                //Por completar
-                    break;
+                System.out.println("Escoge entre uno de los siguientes tres carros (Ingresa unicamente el numero): \n");
+                System.out.println("1. El carro con arpones como arma principal, blindaje simple, carroceria de camion, llantas de tipo off-road y motor deportivo");
+                System.out.println("2. El carro con un cañon como arma, blindaje de tanque, carroceria deportiva, llantas tipo oruga y motor diesel");
+                System.out.println("3. El carro con una sierra como arma, blindaje reforzado, carroceria casual, llantas simples y motor turbo");
+                
+                boolean entradaCorrecta; 
+                    do {
+                        entradaCorrecta = true;
+                        String respuesta = entrada.next();
+
+                        if (respuesta.equals("1")) {
+                            Llantas llantas = AutoFactory.crearLlantas("off-road");
+                            Blindaje blindaje = AutoFactory.crearBlindaje("simple");
+                            Carroceria carroceria = AutoFactory.crearCarroceria("camion");
+                            Armas armas = AutoFactory.crearArmas("arpones");
+                            Motor motor = AutoFactory.crearMotor("deportivo");
+
+                            Auto auto1 = AutoFactory.crearAuto(llantas, motor, carroceria, blindaje, armas);
+                            System.out.println(auto1.toString());
+
+                        } else if (respuesta.equals("2")) {
+                            Llantas llantas = AutoFactory.crearLlantas("oruga");
+                            Blindaje blindaje = AutoFactory.crearBlindaje("tanque");
+                            Carroceria carroceria = AutoFactory.crearCarroceria("deportiva");
+                            Armas armas = AutoFactory.crearArmas("cañones");
+                            Motor motor = AutoFactory.crearMotor("diesel");
+
+                            Auto auto2 = AutoFactory.crearAuto(llantas, motor, carroceria, blindaje, armas);
+                            System.out.println(auto2.toString());
+
+                        } else if (respuesta.equals("3")) {
+                            Llantas llantas = AutoFactory.crearLlantas("simple");
+                            Blindaje blindaje = AutoFactory.crearBlindaje("reforzado");
+                            Carroceria carroceria = AutoFactory.crearCarroceria("casual");
+                            Armas armas = AutoFactory.crearArmas("sierra");
+                            Motor motor = AutoFactory.crearMotor("turbo");
+
+                            Auto auto3 = AutoFactory.crearAuto(llantas, motor, carroceria, blindaje, armas);
+                            System.out.println(auto3.toString());
+
+                        } else {
+                            System.out.println("La opcion proporcionada es incorrecta, ingrese una opcion valida ('1', '2' o '3')");
+                            entradaCorrecta = false;
+                        }
+
+                    } while (entradaCorrecta == false); 
+                
+                break;
 
                 case 3: 
                 System.out.println("Saliendo del programa.");
