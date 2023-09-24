@@ -36,49 +36,57 @@ public class AutoTest{
                     System.out.println("");
                     System.out.println("Escribe el tipo de llanta que desees:");
                     System.out.println("");
-                    System.out.println("Tipo--------------------Costo----------------");
-                    System.out.println("simple                    2   ");
-                    System.out.println("deportivas                4   ");
-                    System.out.println("off-road                  3   ");
-                    System.out.println("oruga                     3   ");
+                    System.out.println("Tipo--------------------Costo--------------Velocidad");
+                    System.out.println("simple                    2                    2    ");
+                    System.out.println("deportivas                4                    5    ");
+                    System.out.println("off-road                  3                    3    ");
+                    System.out.println("oruga                     3                    1    ");
                     String llanta = entrada.next();
                     Llantas tipollanta = AutoFactory.crearLlantas(llanta);
 
                     //Hacemos la seleccion de motor al carro
                     System.out.println("");
                     System.out.println("Ahora escribe el tipo de motor que desees:");
-                    System.out.println("deportivo");
-                    System.out.println("diesel");
-                    System.out.println("turbo");
+                    System.out.println("");
+                    System.out.println("Tipo--------------------Costo--------------Velocidad");
+                    System.out.println("deportivo                 3                     4   ");
+                    System.out.println("diesel                    2                     3   ");
+                    System.out.println("turbo                     4                     5   ");
                     String motor = entrada.next();
                     Motor tipoMotor = AutoFactory.crearMotor(motor);
 
-                    //Hacemos la seleccion de motor al carro
+                    //Hacemos la seleccion de carroseria al carro
                     System.out.println("");
                     System.out.println("Ahora escribe el tipo de carroseria que desees:");
-                    System.out.println("casual");
-                    System.out.println("camion");
-                    System.out.println("deportiva");
+                    System.out.println("");
+                    System.out.println("Tipo--------------------Costo--------------Defensa");
+                    System.out.println("casual                    2                   3    ");
+                    System.out.println("camion                    4                   5    ");
+                    System.out.println("deportiva                 1                   2    ");
                     String caroceria = entrada.next();
                     Carroceria tipoCarroceria = AutoFactory.crearCarroceria(caroceria);
 
                     //Hacemos la seleccion del blindaje al carro
                     System.out.println("");
                     System.out.println("Ahora escribe el tipo de blindaje que desees:");
-                    System.out.println("simple");
-                    System.out.println("reforzado");
-                    System.out.println("tanque");
+                    System.out.println("");
+                    System.out.println("Tipo--------------------Costo--------------Defensa");
+                    System.out.println("simple                    1                   2   ");
+                    System.out.println("reforzado                 2                   3   ");
+                    System.out.println("tanque                    4                   2   ");
                     String blindaje = entrada.next();
                     Blindaje tipoBlindaje = AutoFactory.crearBlindaje(blindaje);
 
-                    //Hacemos la seleccion del blindaje al carro
+                    //Hacemos la seleccion del armas al carro
                     System.out.println("");
                     System.out.println("Ahora escribe el tipo de armas que desees:");
-                    System.out.println("arpones");
-                    System.out.println("lanzallamas");
-                    System.out.println("cañones");
-                    System.out.println("sierra");
-                    System.out.println("metralleta");
+                    System.out.println("");
+                    System.out.println("Tipo--------------------Costo--------------Ataque");
+                    System.out.println("arpones                   2                   2  ");
+                    System.out.println("lanzallamas               3                   3  ");
+                    System.out.println("cañones                   2                   3  ");
+                    System.out.println("sierra                    2                   3  ");
+                    System.out.println("metralleta                4                   4  ");
                     String arma = entrada.next();
                     Armas tipoArmas = AutoFactory.crearArmas(arma);
 
