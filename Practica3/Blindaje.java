@@ -21,4 +21,14 @@ public class Blindaje {
             this.costo = 4;
         } 
     }
+
+    public String getNombre(){
+        return nombre; 
+    } 
+    public int getDefensa() {
+        return defensa; 
+    }
+    public int getCosto() {
+        return costo; 
+    }
 }

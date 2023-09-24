@@ -21,4 +21,14 @@ public class Motor {
             this.costo = 4;
         } 
     }
+
+    public String getNombre(){
+        return nombre; 
+    } 
+    public int getVelocidad() {
+        return velocidad; 
+    }
+    public int getCosto() {
+        return costo; 
+    }
 }

@@ -1,22 +1,27 @@
 public class AutoFactory {
     
-    public Llantas crearLlantas(String nombre) {
+    public static Llantas crearLlantas(String nombre) {
         return new Llantas(nombre);
     }
-    public Motor crearMotor(String nombre) {
+    public static Motor crearMotor(String nombre) {
         return new Motor(nombre);
     }
-    public Carroceria crearCarroceria(String nombre) {
+    public static Carroceria crearCarroceria(String nombre) {
         return new Carroceria(nombre);
     }
-    public Blindaje crearBlindaje(String nombre) {
+    public static Blindaje crearBlindaje(String nombre) {
         return new Blindaje(nombre);
     }
-    public Armas crearArmas(String nombre) {
+    public static Armas crearArmas(String nombre) {
         return new Armas(nombre);
     }
 
-    public Auto crearAuto(Llantas llantas, Motor motor, Carroceria carroceria, Blindaje blindaje, Armas armas) {
-        // este metodo no es oficial pues supuestamente en la clase factory se deberia de crear un objeto sin la necesidad de pasar tantos parametros 
+    public static Auto crearAuto(Llantas llantas, Motor motor, Carroceria carroceria, Blindaje blindaje, Armas armas) {
+        int ataqueTotal = armas.getAtaque(); 
+        int defensaTotal = blindaje.getDefensa() + carroceria.getDefensa();
+        int velocidadTotal = llantas.getVelocidad() + motor.getVelocidad();
+        int costoTotal = llantas.getCosto() + motor.getCosto() + carroceria.getCosto() + blindaje.getCosto() + armas.getCosto(); 
+
+        return new Auto(llantas, motor, carroceria, blindaje, armas, ataqueTotal, defensaTotal, velocidadTotal, costoTotal);
     }
 }

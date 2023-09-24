@@ -21,4 +21,14 @@ public class Carroceria {
             this.costo = 1;
         } 
     }
+
+    public String getNombre(){
+        return nombre; 
+    } 
+    public int getDefensa() {
+        return defensa; 
+    }
+    public int getCosto() {
+        return costo; 
+    }
 }

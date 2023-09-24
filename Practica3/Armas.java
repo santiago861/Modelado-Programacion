@@ -29,4 +29,14 @@ public class Armas {
             this.costo = 4;
         } 
     }
+
+    public String getNombre(){
+        return nombre; 
+    } 
+    public int getAtaque() {
+        return ataque; 
+    }
+    public int getCosto() {
+        return costo; 
+    }
 }

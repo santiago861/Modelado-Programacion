@@ -25,4 +25,14 @@ public class Llantas {
             this.costo = 3;
         } 
     }
+
+    public String getNombre(){
+        return nombre; 
+    } 
+    public int getVelocidad() {
+        return velocidad; 
+    }
+    public int getCosto() {
+        return costo; 
+    }
 }

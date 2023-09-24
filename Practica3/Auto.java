@@ -1,5 +1,3 @@
-import java.sql.Blob;
-
 public class Auto {
     private Llantas llantas; 
     private Motor motor; 
@@ -18,5 +16,17 @@ public class Auto {
         this.defensaTotal = defensaTotal; 
         this.velocidadTotal = velocidadTotal; 
         this.costoTotal = costoTotal; 
+    }
+
+    public String toString() {
+        String cadena1 = "Se ha creado tu auto exitosamente \n"; 
+        String cadena2 = "Las llantas son de tipo " + llantas.getNombre() + ", el motor es de tipo " + motor.getNombre() + ", la carroceria es de tipo "
+                            + carroceria.getNombre() + ", el blindaje es de tipo " + blindaje.getNombre() + " y las armas son " + armas.getNombre() + "\n";
+        String cadena3 = "El ataque total de tu nuevo auto es de " + ataqueTotal + " puntos, la defensa total es de " + defensaTotal + 
+                            " puntos, la velocidad total es de " + velocidadTotal + " puntos. Por último el costo final del auto es de " + costoTotal +
+                            " puntos.";
+
+        String cadena = cadena1 + cadena2 + cadena3;
+        return cadena;
     }
 }
