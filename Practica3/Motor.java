@@ -1,7 +1,13 @@
-
-/* 
- * Motor: deportivo, diesel, turbo
+/**
+ * Practica 3 del curso de Modelado y Programación
+ * 
+ * Clase Motor: deportivo, diesel, turbo.
+ * 
+ * @author Santiago Iván Reyes Medina - 320308598
+ * @author Carlos Yañez Diaz - 320032343
+ * @version Versión 1
  */
+
 public class Motor {
     private String nombre;
     private int velocidad, costo; 

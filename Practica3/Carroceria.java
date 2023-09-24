@@ -1,7 +1,13 @@
-
-/*
- * Carrocerıa: casual, camion, deportiva
+/**
+ * Practica 3 del curso de Modelado y Programación
+ * 
+ * Clase Carrocerıa: casual, camion, deportiva.
+ * 
+ * @author Santiago Iván Reyes Medina - 320308598
+ * @author Carlos Yañez Diaz - 320032343
+ * @version Versión 1
  */
+
 public class Carroceria {
     private String nombre;
     private int defensa, costo; 

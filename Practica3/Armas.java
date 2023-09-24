@@ -1,7 +1,13 @@
-
-/*
- * Armas: arpones, lanzallamas, cañones, sierra, metralleta
+/**
+ * Practica 3 del curso de Modelado y Programación
+ * 
+ * Clase Armas: arpones, lanzallamas, cañones, sierra, metralleta
+ * 
+ * @author Santiago Iván Reyes Medina - 320308598
+ * @author Carlos Yañez Diaz - 320032343
+ * @version Versión 1
  */
+
 public class Armas {
     private String nombre;
     private int ataque, costo; 

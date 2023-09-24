@@ -1,7 +1,13 @@
-
-/*
- * Blindaje: simple, reforzado, tanque
+/**
+ * Practica 3 del curso de Modelado y Programación
+ * 
+ * Clase Blindaje: simple, reforzado, tanque.
+ * 
+ * @author Santiago Iván Reyes Medina - 320308598
+ * @author Carlos Yañez Diaz - 320032343
+ * @version Versión 1
  */
+
 public class Blindaje {
     private String nombre;
     private int defensa, costo; 

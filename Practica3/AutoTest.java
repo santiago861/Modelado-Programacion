@@ -1,3 +1,12 @@
+/**
+ * Practica 3 del curso de Modelado y Programación
+ * 
+ * Clase AutoTest.
+ * 
+ * @author Santiago Iván Reyes Medina - 320308598
+ * @author Carlos Yañez Diaz - 320032343
+ * @version Versión 1
+ */
 import java.util.Scanner;
 public class AutoTest{
 
@@ -26,10 +35,12 @@ public class AutoTest{
                     System.out.println("Usted dispone de " + puntosIniciales + " puntos");
                     System.out.println("");
                     System.out.println("Escribe el tipo de llanta que desees:");
-                    System.out.println("simple");
-                    System.out.println("deportivas");
-                    System.out.println("off-road");
-                    System.out.println("oruga");
+                    System.out.println("");
+                    System.out.println("Tipo--------------------Costo----------------");
+                    System.out.println("simple                    2   ");
+                    System.out.println("deportivas                4   ");
+                    System.out.println("off-road                  3   ");
+                    System.out.println("oruga                     3   ");
                     String llanta = entrada.next();
                     Llantas tipollanta = AutoFactory.crearLlantas(llanta);
 

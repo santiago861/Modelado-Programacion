@@ -1,3 +1,13 @@
+/**
+ * Practica 3 del curso de Modelado y Programación
+ * 
+ * Clase Auto: llantas, motor, carroceria, blindaje, armas, ataqueTotal, defensaTotal, velocidadTotal, costoTotal.
+ * 
+ * @author Santiago Iván Reyes Medina - 320308598
+ * @author Carlos Yañez Diaz - 320032343
+ * @version Versión 1
+ */
+
 public class Auto {
     private Llantas llantas; 
     private Motor motor; 
