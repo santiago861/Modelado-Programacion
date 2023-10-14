@@ -1,13 +1,17 @@
 public class NotificacionPush extends Notificacion{
-    private String emailDestino;
+    private String usuarioDestino;
 
-    public NotificacionPush(String mensaje, String emailDestino) {
+    public NotificacionPush(String mensaje, String usuarioDestino) {
         super(mensaje);
-        this.emailDestino = emailDestino;
+        this.usuarioDestino = usuarioDestino;
     }
 
     @Override
     public void enviar() {
-        
+        // Simula el envío de una notificacion a un usuario mostrando un mensaje en la terminal
+        System.out.println("Enviando un mensaje a " + usuarioDestino);
+        System.out.println("Asunto: Notificación");
+        System.out.println("Mensaje: " + mensaje);
+        System.out.println("Notificacion enviada con éxito.");
     }
 }

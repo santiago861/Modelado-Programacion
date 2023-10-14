@@ -32,8 +32,19 @@ public class NotificacionApp {
                         case 1:
                             System.out.print("Email destinatario: ");
                             String emailDestino = scanner.next();
-                            notificaciones.add(new NotificacionEmail(mensaje, emailDestino));
+                            Notificacion notificacion = new NotificacionEmail(mensaje, emailDestino);
+
+                            System.out.print("¿Desea agregar una firma? (Sí/No): "); // decorador de agregar firma a la notificacion
+                            String agregarFirma = scanner.next();
+                            if (agregarFirma.equalsIgnoreCase("Sí")) {
+                                System.out.print("Firma: ");
+                                String firma = scanner.next();
+                                notificacion = new NotificacionConFirma(notificacion, firma); // Agregar la firma
+                            }
+                            notificaciones.add(notificacion);
                             break;
+
+                            // agregar la misma funcionalidad de firma para los otros tipos de notificacion
                         case 2:
                             System.out.print("Número de teléfono: ");
                             String numeroTelefono = scanner.next();
