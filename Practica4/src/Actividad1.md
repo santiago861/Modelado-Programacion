@@ -1,0 +1,1 @@
+Menciona los principios de diseño esenciales de los patrones Adapter y Decorator. Menciona una desventaja de cada patrón.
