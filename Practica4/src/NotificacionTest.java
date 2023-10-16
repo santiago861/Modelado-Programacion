@@ -1,3 +1,13 @@
+/**
+ * Practica 4 del curso de Modelado y Programación
+ * 
+ * Clase Main
+ * 
+ * @author Santiago Iván Reyes Medina - 320308598
+ * @author Carlos Yañez Diaz - 320032343
+ * @version Versión 1
+ */
+
 import java.util.Scanner;
 
 public class NotificacionTest{
@@ -17,6 +27,8 @@ public class NotificacionTest{
             op = entrada.nextInt();
 
             switch (op){
+
+                //Notificacion tipo SMS
                 case 1:
                 System.out.println("");
                 System.out.println("Notificacion SMS");
@@ -32,7 +44,8 @@ public class NotificacionTest{
                 System.out.println("");
                 notificacion.destinatario(destinatarioS);
                     break;
-
+                
+                //Notificacion tipo Gmail
                 case 2:
                 System.out.println("");
                 System.out.println("Notificacion Gmail");
@@ -49,6 +62,7 @@ public class NotificacionTest{
                 notificacionG.destinatario(destinatarioG);
                     break;
 
+                //Notificacion tipo Facebook
                 case 3:
                 System.out.println("");
                 System.out.println("Notificacion Facebook");
@@ -65,10 +79,12 @@ public class NotificacionTest{
                 notificacionF.destinatario(destinatarioF);
                     break; 
 
+                //Caso para salir del programa
                 case 4:
                     System.out.println("Saliendo del programa...");
                         break;
 
+                //Caso default
                 default:
                 System.out.println("Opcion no valida. Por favor, seleccione una opcion valida.");
                     break;
