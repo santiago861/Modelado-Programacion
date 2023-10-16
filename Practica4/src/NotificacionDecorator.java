@@ -1,13 +1,14 @@
-public class NotificacionDecorator extends Notificacion{
-    protected Notificacion notificacionDecorada;
 
-    public NotificacionDecorator(Notificacion notificacionDecorada) {
-        super(notificacionDecorada.mensaje);
-        this.notificacionDecorada = notificacionDecorada;
+
+public abstract class NotificacionDecorator implements Notificacion{
+
+    Notificacion notificacion;
+
+    public NotificacionDecorator (Notificacion notificacion){
+        this.notificacion = notificacion;
     }
 
-    @Override
-    public void enviar() {
-        
+    protected Notificacion getNotificacion(){
+        return notificacion;
     }
 }

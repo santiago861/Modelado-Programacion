@@ -1,9 +1,7 @@
-public abstract class Notificacion {
-    protected String mensaje; 
+public interface Notificacion{
 
-    public Notificacion(String mensaje) {
-        this.mensaje = mensaje;
-    }
+    public void mensaje (String mensaje);
 
-    public abstract void enviar();
-} 
+    public void destinatario (String destinatario);
+
+}

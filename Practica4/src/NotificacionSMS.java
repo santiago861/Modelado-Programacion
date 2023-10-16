@@ -1,17 +1,15 @@
-public class NotificacionSMS extends Notificacion{
-    private String numeroTelefono;
+public class NotificacionSMS extends NotificacionDecorator{
 
-    public NotificacionSMS(String mensaje, String numeroTelefono) {
-        super(mensaje);
-        this.numeroTelefono = numeroTelefono;
+    public NotificacionSMS(Notificacion notificacion){
+        super(notificacion);
     }
 
     @Override
-    public void enviar() {
-        // Simula el envío de un mensaje sms mostrando un mensaje en la terminal
-        System.out.println("Enviando un SMS a " + numeroTelefono);
-        System.out.println("Asunto: Notificación por SMS");
-        System.out.println("Mensaje: " + mensaje);
-        System.out.println("Mensaje SMS enviado con éxito.");
+    public void mensaje (String mensaje){
+        System.out.println("Mensaje SMS enviado: " + mensaje);
+    }
+
+    public void destinatario(String destinatario){
+    System.out.println("Has enviado el mensaje al numero: " + destinatario);
     }
 }
