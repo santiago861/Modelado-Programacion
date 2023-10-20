@@ -99,3 +99,4 @@ void Display(void)
   glTranslatef(0.,RadiusOfBall, 0.);
   // draw the ball
 ... (67 lines left)
+*/
