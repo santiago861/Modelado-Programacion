@@ -1,5 +1,5 @@
 // Definición de la clase MatrixMultiplicationThread
-class MatrixMultiplicationThread extends Thread {
+class MatrixMultiplicationThread extends Thread { 
     private int[][] matrixA;   // Matriz de entrada A
     private int[][] matrixB;   // Matriz de entrada B
     private int[][] result;    // Matriz de resultado
