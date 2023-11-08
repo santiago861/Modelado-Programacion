@@ -1,6 +1,17 @@
+/**
+ * Practica Extra
+ * 
+ * Clase Main 
+ * 
+ * @author Santiago Iván Reyes Medina - 320308598
+ * @author Carlos Yañez Diaz - 320032343
+ * @version Versión 1
+ */
+
 #include <GL/glut.h>
 #include <math.h>
 
+// Number Pi
 #define PI 3.1415926535898
 
 double xpos, ypos, ydir, xdir;
@@ -26,7 +37,7 @@ void MyCircle2f(GLfloat centerx, GLfloat centery, GLfloat radius) {
 
 // Draw the ball, centered at the origin
 void draw_ball() {
-  glColor3f(0.6, 0.3, 0.);
+  glColor3f(0.7, 0.2, 9.);
   MyCircle2f(0., 0., RadiusOfBall);
 }
 
@@ -90,7 +101,7 @@ int main(int argc, char** argv) {
   // Set up the orthographic projection
   glMatrixMode(GL_PROJECTION);
   glLoadIdentity();
-  glOrtho(0, 800, 0, 600, -1, 1);
+  glOrtho(0, 500, 0, 400, -1, 1);
 
   // Set up the model-view matrix
   glMatrixMode(GL_MODELVIEW);
