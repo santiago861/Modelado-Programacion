@@ -1,3 +1,8 @@
+/**
+ * @author Yanez Diaz Carlos
+ * @author Reyes Medina Santiago Ivan
+ */
+
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -7,8 +12,8 @@ public class ImageBlend {
     public static void main(String[] args) {
         try {
             // Rutas de las imágenes que deseas combinar
-            String imagePath1 = "imagen1.jpg";
-            String imagePath2 = "imagen2.jpg";
+            String imagePath1 = "imagen1.png";
+            String imagePath2 = "imagen2.png";
 
             // Cargar las imágenes
             BufferedImage image1 = ImageIO.read(new File(imagePath1));

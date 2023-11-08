@@ -1,3 +1,9 @@
+/**
+ * @author Yanez Diaz Carlos
+ * @author Reyes Medina Santiago Ivan
+ */
+
+
 // Definición de la clase MatrixMultiplicationThread
 class MatrixMultiplicationThread extends Thread { 
     private int[][] matrixA;   // Matriz de entrada A
