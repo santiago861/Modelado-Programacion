@@ -1,52 +1,81 @@
-/**
- * @author Yanez Diaz Carlos
- * @author Reyes Medina Santiago Ivan
- */
-
+// /**
+//  * @author Yanez Diaz Carlos
+//  * @author Reyes Medina Santiago Ivan
+//  */
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 
-public class Cliente{
+public class Servidor {
     public static void main(String[] args) {
-        String serverHost = "127.0.0.1";
-        int serverPort = 7400; // Puerto del servidor
-        Socket socket = null;
-        BufferedReader msj = null;
-        BufferedWriter out = null;
+        int port = 7400; // Puerto en el que escuchará el servidor
+        ServerSocket serverSocket = null;
+        ArrayList<String> users = new ArrayList<>();
 
         try {
-            socket = new Socket(serverHost, serverPort);
-            System.out.println("Conectado al servidor...");
-
-            msj = new BufferedReader(new InputStreamReader(System.in));
-            out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
-
-            String cliente;
-
-            System.out.println("Escribe un mensaje (o 'salir' para salir):");
+            serverSocket = new ServerSocket(port);
+            System.out.println("Esperando una conexión en el puerto " + port + "...");
 
             while (true) {
-                cliente = msj.readLine();
-                if (cliente == null || cliente.equalsIgnoreCase("salir")) {
-                    break; // Salir del bucle si el usuario escribe salir
-                }
-                out.write(cliente + "\n");
-                out.flush();
+                Socket socketCliente = serverSocket.accept();
+                System.out.println("Conexión establecida desde " + socketCliente.getInetAddress() + ":" + socketCliente.getPort());
+
+                // Crea un nuevo hilo para manejar la conexión del cliente
+                Thread clientHandlerThread = new Thread(new ClienteHandler(socketCliente));
+                clientHandlerThread.start();
             }
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
             try {
-                if (out != null) out.close();
-                if (msj != null) msj.close();
-                if (socket != null) socket.close();
+                if (serverSocket != null) serverSocket.close();
             } catch (IOException e) {
                 e.printStackTrace();
+            }
+        }
+    }
+
+    // Clase interna para manejar la conexión de cada cliente en un hilo separado
+    private static class ClienteHandler implements Runnable {
+        private Socket socketCliente;
+        private BufferedReader in;
+        private BufferedWriter out;
+
+        public ClienteHandler(Socket socketCliente) {
+            this.socketCliente = socketCliente;
+        }
+
+        @Override
+        public void run() {
+            try {
+                in = new BufferedReader(new InputStreamReader(socketCliente.getInputStream()));
+                out = new BufferedWriter(new OutputStreamWriter(socketCliente.getOutputStream()));
+
+                String msjCliente;
+
+                while (true) {
+                    msjCliente = in.readLine();
+                    if (msjCliente == null) {
+                        break; // Si el cliente cierra la conexión, salimos del bucle
+                    }
+                    System.out.println("Mensaje del cliente: " + msjCliente);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    if (in != null) in.close();
+                    if (out != null) out.close();
+                    if (socketCliente != null) socketCliente.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
