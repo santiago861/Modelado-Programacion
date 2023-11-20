@@ -13,6 +13,8 @@ import java.net.Socket;
 import java.util.ArrayList;
 
 public class Servidor {
+        
+
 
     static ArrayList<String> users = new ArrayList<>();
       public static void main(String[] args) {

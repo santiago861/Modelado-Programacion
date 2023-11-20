@@ -11,10 +11,9 @@
  import java.io.OutputStreamWriter;
  import java.net.Socket;
 import java.util.ArrayList;
-import java.util.Scanner;
  
  public class Cliente{
-     static Scanner entrada = new Scanner(System.in);
+
      public static void main(String[] args) {
          String serverHost = "127.0.0.1";
          int serverPort = 7400; // Puerto del servidor
@@ -22,11 +21,10 @@ import java.util.Scanner;
          BufferedReader msj = null;
          BufferedReader user = null;
          BufferedWriter out = null;
-
          try {
              socket = new Socket(serverHost, serverPort);
              System.out.println("Conectado al servidor...");
-             msj = new BufferedReader(new InputStreamReader(System.in));
+             msj = new  BufferedReader(new InputStreamReader(System.in));
              user = new BufferedReader(new InputStreamReader(System.in));
              out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
              System.out.println("");
@@ -36,6 +34,7 @@ import java.util.Scanner;
              while (true) {
                  cliente = msj.readLine();
                  System.out.println("Escribe tu mensaje: ");
+                
                  if (cliente == null || cliente.equalsIgnoreCase("salir")) {
                      break; // Salir del bucle si el usuario escribe salir
                  }
