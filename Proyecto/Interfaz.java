@@ -9,6 +9,7 @@ import java.io.OutputStreamWriter;
 
 public class Interfaz extends JFrame {
     private JButton chatsButton;
+    private JButton estadoButton;
     private BufferedWriter out;
 
     public Interfaz(BufferedWriter out) {
@@ -28,8 +29,19 @@ public class Interfaz extends JFrame {
                 abrirVentanaChats();
             }
         });
+        estadoButton = new JButton("Estado");
+        estadoButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                abrirVentanaEstado();
+            }
+        });
 
-        add(chatsButton, BorderLayout.CENTER);
+        JPanel buttonPanel = new JPanel(new GridLayout(1, 2));
+        buttonPanel.add(chatsButton);
+        buttonPanel.add(estadoButton);
+
+        add(buttonPanel, BorderLayout.CENTER);
     }
 
     private void abrirVentanaChats() {
@@ -54,6 +66,61 @@ public class Interfaz extends JFrame {
         }
 
         ventanaChats.setVisible(true);
+    }
+
+    private void abrirVentanaEstado() {
+        JFrame ventanaEstado = new JFrame("Configuración de Estado");
+        ventanaEstado.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        ventanaEstado.setSize(300, 200);
+        ventanaEstado.setLayout(new BorderLayout());
+
+        JLabel estadoLabel = new JLabel("Configura tu estado de conexión");
+        JPanel opcionesPanel = new JPanel(new GridLayout(3, 2));
+
+        JToggleButton activeToggle = new JToggleButton("Active");
+        JToggleButton awayToggle = new JToggleButton("Away");
+        JToggleButton busyToggle = new JToggleButton("Busy");
+
+        ButtonGroup buttonGroup = new ButtonGroup();
+        buttonGroup.add(activeToggle);
+        buttonGroup.add(awayToggle);
+        buttonGroup.add(busyToggle);
+
+        activeToggle.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                awayToggle.setSelected(false);
+                busyToggle.setSelected(false);
+            }
+        });
+
+        awayToggle.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                activeToggle.setSelected(false);
+                busyToggle.setSelected(false);
+            }
+        });
+
+        busyToggle.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                activeToggle.setSelected(false);
+                awayToggle.setSelected(false);
+            }
+        });
+
+        opcionesPanel.add(activeToggle);
+        opcionesPanel.add(new JLabel(" "));
+        opcionesPanel.add(awayToggle);
+        opcionesPanel.add(new JLabel(" "));
+        opcionesPanel.add(busyToggle);
+        opcionesPanel.add(new JLabel(" "));
+
+        ventanaEstado.add(estadoLabel, BorderLayout.NORTH);
+        ventanaEstado.add(opcionesPanel, BorderLayout.CENTER);
+
+        ventanaEstado.setVisible(true);
     }
 
     private void abrirVentanaChat(String usuario) {
