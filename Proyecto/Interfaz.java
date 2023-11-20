@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedWriter;
@@ -7,8 +8,7 @@ import java.net.Socket;
 import java.io.OutputStreamWriter;
 
 public class Interfaz extends JFrame {
-    private JButton enviarButton;
-    private JTextField mensajeField;
+    private JButton chatsButton;
     private BufferedWriter out;
 
     public Interfaz(BufferedWriter out) {
@@ -17,32 +17,49 @@ public class Interfaz extends JFrame {
 
         // Configuración de la interfaz
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(300, 150);
+        setSize(400, 200); // Aumenté el tamaño para mejorar la presentación
         setLocationRelativeTo(null);
-        setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
+        setLayout(new BorderLayout());
 
-        mensajeField = new JTextField();
-        enviarButton = new JButton("Enviar");
-
-        enviarButton.addActionListener(new ActionListener() {
+        chatsButton = new JButton("Chats");
+        chatsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                enviarMensaje();
+                abrirVentanaChats();
             }
         });
 
-        add(mensajeField);
-        add(enviarButton);
+        add(chatsButton, BorderLayout.CENTER);
     }
 
-    private void enviarMensaje() {
-        String mensaje = mensajeField.getText();
-        try {
-            out.write(mensaje + "\n");
-            out.flush();
-        } catch (IOException e) {
-            e.printStackTrace();
+    private void abrirVentanaChats() {
+        // Aquí deberías obtener la lista de usuarios conectados y crear botones para cada uno
+        // En este ejemplo, simplemente mostraremos botones ficticios
+        String[] usuariosConectados = {"Usuario1", "Usuario2", "Usuario3"};
+
+        JFrame ventanaChats = new JFrame("Chats");
+        ventanaChats.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        ventanaChats.setSize(300, 200);
+        ventanaChats.setLayout(new GridLayout(usuariosConectados.length, 1));
+
+        for (String usuario : usuariosConectados) {
+            JButton usuarioButton = new JButton(usuario);
+            usuarioButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    abrirVentanaChat(usuario);
+                }
+            });
+            ventanaChats.add(usuarioButton);
         }
+
+        ventanaChats.setVisible(true);
+    }
+
+    private void abrirVentanaChat(String usuario) {
+        // Aquí deberías abrir una nueva ventana para el chat con el usuario seleccionado
+        // En este ejemplo, simplemente mostraremos un mensaje
+        JOptionPane.showMessageDialog(this, "Abrir chat con " + usuario);
     }
 
     public static void main(String[] args) {
