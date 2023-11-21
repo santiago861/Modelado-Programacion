@@ -1,26 +1,24 @@
-// /**
-//  * @author Yanez Diaz Carlos
-//  * @author Reyes Medina Santiago Ivan
-//  */
+/**
+ * @author Yanez Diaz Carlos
+ * @author Reyes Medina Santiago Ivan
+ */
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
+
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Servidor {
-        
+    static Map<String, DataOutputStream> connectedUsers = new HashMap<>();
 
-
-    static ArrayList<String> users = new ArrayList<>();
-      public static void main(String[] args) {
-        int port = 7400; // Puerto en el que escuchará el servidor
+    public static void main(String[] args) {
+        int port = 7400;
         ServerSocket serverSocket = null;
-        
+
         try {
             serverSocket = new ServerSocket(port);
             System.out.println("Esperando una conexión en el puerto " + port + "...");
@@ -28,6 +26,7 @@ public class Servidor {
             while (true) {
                 Socket socketCliente = serverSocket.accept();
                 System.out.println("Conexión establecida desde " + socketCliente.getInetAddress() + ":" + socketCliente.getPort());
+
                 // Crea un nuevo hilo para manejar la conexión del cliente
                 Thread clientHandlerThread = new Thread(new ClienteHandler(socketCliente));
                 clientHandlerThread.start();
@@ -43,12 +42,10 @@ public class Servidor {
         }
     }
 
-    // Clase interna para manejar la conexión de cada cliente en un hilo separado
     private static class ClienteHandler implements Runnable {
         private Socket socketCliente;
-        private BufferedReader inMsj;
-        private BufferedReader inUser;
-        private BufferedWriter out;
+        private DataInputStream dataInputStream;
+        private DataOutputStream dataOutputStream;
 
         public ClienteHandler(Socket socketCliente) {
             this.socketCliente = socketCliente;
@@ -57,30 +54,100 @@ public class Servidor {
         @Override
         public void run() {
             try {
-                inMsj = new BufferedReader(new InputStreamReader(socketCliente.getInputStream()));
-                inUser = new BufferedReader(new InputStreamReader(socketCliente.getInputStream()));
-                out = new BufferedWriter(new OutputStreamWriter(socketCliente.getOutputStream()));
-                String usuario; 
-                String msjCliente;
-                usuario = inUser.readLine();
-                users.add(usuario);
+                dataInputStream = new DataInputStream(socketCliente.getInputStream());
+                dataOutputStream = new DataOutputStream(socketCliente.getOutputStream());
+
+                String nombreUsuario = dataInputStream.readUTF();
+                connectedUsers.put(nombreUsuario, dataOutputStream);
+
                 while (true) {
-                    msjCliente = inMsj.readLine();
-                    if (msjCliente == null) {
-                        break; // Si el cliente cierra la conexión, salimos del bucle
+                    String[] mensajeParts = dataInputStream.readUTF().split(";");
+                    String opcion = mensajeParts[0];
+
+                    switch (opcion) {
+                        case "1":
+                            int tipoMensaje = Integer.parseInt(mensajeParts[1]);
+                            String estado = mensajeParts[2];
+                            String destinatario = mensajeParts[3];
+                            String mensaje = mensajeParts[4];
+
+                            if (tipoMensaje == 1) {
+                                enviarMensajePublico(nombreUsuario, mensaje);
+                            } else if (tipoMensaje == 2) {
+                                enviarMensajePrivado(nombreUsuario, destinatario, mensaje);
+                            }
+
+                            dataOutputStream.writeUTF("Mensaje recibido con éxito");
+                            dataOutputStream.flush();
+                            break;
+
+                        case "2":
+                            enviarListaUsuarios();
+                            break;
+
+                        default:
+                            System.out.println("Opción no válida del cliente " + nombreUsuario);
+                            break;
                     }
-                    System.out.println("Mensaje de "+ usuario + ":  "  + msjCliente);
                 }
             } catch (IOException e) {
                 e.printStackTrace();
             } finally {
                 try {
-                    if (inMsj != null) inMsj.close();
-                    if (out != null) out.close();
+                    if (dataInputStream != null) dataInputStream.close();
+                    if (dataOutputStream != null) dataOutputStream.close();
                     if (socketCliente != null) socketCliente.close();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+            }
+        }
+
+        private void enviarMensajePublico(String remitente, String mensaje) {
+            for (Map.Entry<String, DataOutputStream> entry : connectedUsers.entrySet()) {
+                String usuario = entry.getKey();
+                DataOutputStream outputStream = entry.getValue();
+
+                try {
+                    outputStream.writeUTF("Mensaje público de " + remitente + ": " + mensaje);
+                    outputStream.flush();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        private void enviarMensajePrivado(String remitente, String destinatario, String mensaje) {
+            if (connectedUsers.containsKey(destinatario)) {
+                DataOutputStream destinatarioOutputStream = connectedUsers.get(destinatario);
+
+                try {
+                    destinatarioOutputStream.writeUTF("Mensaje privado de " + remitente + ": " + mensaje);
+                    destinatarioOutputStream.flush();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                try {
+                    dataOutputStream.writeUTF("El destinatario '" + destinatario + "' no está en la lista de usuarios conectados.");
+                    dataOutputStream.flush();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        private void enviarListaUsuarios() {
+            StringBuilder listaUsuarios = new StringBuilder("Lista de usuarios conectados:\n");
+            for (String usuario : connectedUsers.keySet()) {
+                listaUsuarios.append(usuario).append("\n");
+            }
+
+            try {
+                dataOutputStream.writeUTF(listaUsuarios.toString());
+                dataOutputStream.flush();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
     }

@@ -1,3 +1,8 @@
+/**
+ * @author Yanez Diaz Carlos
+ * @author Reyes Medina Santiago Ivan
+ */
+
 public class MensajeJson{
 
     String tipoMensaje;
