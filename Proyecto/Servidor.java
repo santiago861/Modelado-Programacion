@@ -1,22 +1,19 @@
-/**
- * @author Yanez Diaz Carlos
- * @author Reyes Medina Santiago Ivan
- */
+// /**
+//  * @author Yanez Diaz Carlos
+//  * @author Reyes Medina Santiago Ivan
+//  */
 
-
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.HashMap;
-import java.util.Map;
 
 public class Servidor {
-    static Map<String, DataOutputStream> connectedUsers = new HashMap<>();
-
     public static void main(String[] args) {
-        int port = 7400;
+        int port = 7400; // Puerto en el que escuchará el servidor
         ServerSocket serverSocket = null;
 
         try {
@@ -42,10 +39,11 @@ public class Servidor {
         }
     }
 
+    // Clase interna para manejar la conexión de cada cliente en un hilo separado
     private static class ClienteHandler implements Runnable {
         private Socket socketCliente;
-        private DataInputStream dataInputStream;
-        private DataOutputStream dataOutputStream;
+        private BufferedReader in;
+        private BufferedWriter out;
 
         public ClienteHandler(Socket socketCliente) {
             this.socketCliente = socketCliente;
@@ -54,100 +52,28 @@ public class Servidor {
         @Override
         public void run() {
             try {
-                dataInputStream = new DataInputStream(socketCliente.getInputStream());
-                dataOutputStream = new DataOutputStream(socketCliente.getOutputStream());
+                in = new BufferedReader(new InputStreamReader(socketCliente.getInputStream()));
+                out = new BufferedWriter(new OutputStreamWriter(socketCliente.getOutputStream()));
 
-                String nombreUsuario = dataInputStream.readUTF();
-                connectedUsers.put(nombreUsuario, dataOutputStream);
+                String msjCliente;
 
                 while (true) {
-                    String[] mensajeParts = dataInputStream.readUTF().split(";");
-                    String opcion = mensajeParts[0];
-
-                    switch (opcion) {
-                        case "1":
-                            int tipoMensaje = Integer.parseInt(mensajeParts[1]);
-                            String estado = mensajeParts[2];
-                            String destinatario = mensajeParts[3];
-                            String mensaje = mensajeParts[4];
-
-                            if (tipoMensaje == 1) {
-                                enviarMensajePublico(nombreUsuario, mensaje);
-                            } else if (tipoMensaje == 2) {
-                                enviarMensajePrivado(nombreUsuario, destinatario, mensaje);
-                            }
-
-                            dataOutputStream.writeUTF("Mensaje recibido con éxito");
-                            dataOutputStream.flush();
-                            break;
-
-                        case "2":
-                            enviarListaUsuarios();
-                            break;
-
-                        default:
-                            System.out.println("Opción no válida del cliente " + nombreUsuario);
-                            break;
+                    msjCliente = in.readLine();
+                    if (msjCliente == null) {
+                        break; // Si el cliente cierra la conexión, salimos del bucle
                     }
+                    System.out.println("Mensaje del cliente: " + msjCliente);
                 }
             } catch (IOException e) {
                 e.printStackTrace();
             } finally {
                 try {
-                    if (dataInputStream != null) dataInputStream.close();
-                    if (dataOutputStream != null) dataOutputStream.close();
+                    if (in != null) in.close();
+                    if (out != null) out.close();
                     if (socketCliente != null) socketCliente.close();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-            }
-        }
-
-        private void enviarMensajePublico(String remitente, String mensaje) {
-            for (Map.Entry<String, DataOutputStream> entry : connectedUsers.entrySet()) {
-                String usuario = entry.getKey();
-                DataOutputStream outputStream = entry.getValue();
-
-                try {
-                    outputStream.writeUTF("Mensaje público de " + remitente + ": " + mensaje);
-                    outputStream.flush();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-
-        private void enviarMensajePrivado(String remitente, String destinatario, String mensaje) {
-            if (connectedUsers.containsKey(destinatario)) {
-                DataOutputStream destinatarioOutputStream = connectedUsers.get(destinatario);
-
-                try {
-                    destinatarioOutputStream.writeUTF("Mensaje privado de " + remitente + ": " + mensaje);
-                    destinatarioOutputStream.flush();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            } else {
-                try {
-                    dataOutputStream.writeUTF("El destinatario '" + destinatario + "' no está en la lista de usuarios conectados.");
-                    dataOutputStream.flush();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-
-        private void enviarListaUsuarios() {
-            StringBuilder listaUsuarios = new StringBuilder("Lista de usuarios conectados:\n");
-            for (String usuario : connectedUsers.keySet()) {
-                listaUsuarios.append(usuario).append("\n");
-            }
-
-            try {
-                dataOutputStream.writeUTF(listaUsuarios.toString());
-                dataOutputStream.flush();
-            } catch (IOException e) {
-                e.printStackTrace();
             }
         }
     }
