@@ -14,7 +14,6 @@ public class Servidor {
 	public static ServerSocket servidor;
 	private static ListaClientes clientes;
 	
-	
 	public static void main(String[] args) {
 		
 		configurarVentana();
@@ -34,8 +33,7 @@ public class Servidor {
         
         while(true) {}
     }
-    
-    
+
 	public static void imprimirConsola(String msg) {
 		vista.addText(msg);
 	}
@@ -50,12 +48,11 @@ public class Servidor {
 	}
 		
 	private static void configurarVentana() {
-		/* --------------- Inicializaciones --------------- */
+
         ventana = new JFrame("Servidor de chat");
         vista = new VistaServidor();
         controlador = new ControladorServidor(vista);
         
-        /* --------------- Configuraciones --------------- */
         ventana.setContentPane(vista);
         vista.setControlador(controlador);
 	}
@@ -66,8 +63,7 @@ public class Servidor {
         ventana.setResizable(false);
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
-    
-    
+
     private static void iniciarServidor() throws IOException {
 		servidor = new ServerSocket(Constantes.PUERTO_SERVIDOR);
 		clientes = new ListaClientes();
@@ -76,7 +72,7 @@ public class Servidor {
 		vista.addText("<SERVER> Servidor iniciado en "+InetAddress.getLocalHost().getHostAddress());
     }
     
-   
+
     private static void handleClient(){
     	try {
     		// Aceptamos el cliente.
@@ -88,19 +84,15 @@ public class Servidor {
     	}catch(IOException e) { /* Cuando no hay nadie intentando conectar */ }
     }
     
-    
     public static void meterCliente(HiloServidor thread) {
     	clientes.add(thread.getNombre(), thread);
     	clientes.actualizarConectados();
     	vista.setClientesConectados(clientes.getClientesConectados());
     }
     
-    
     public static void sacarCliente(String nombre) {
     	clientes.remove(nombre);
     	clientes.actualizarConectados();
     	vista.setClientesConectados(clientes.getClientesConectados());
-    }
-    
-    
+    }    
 }
