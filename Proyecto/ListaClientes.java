@@ -4,9 +4,7 @@ import java.util.Map.Entry;
 
 import java.util.Set;
 
-/**
- * Clase que almacena los clientes que están conectados.
- */
+
 public class ListaClientes {
 
 	private static HashMap<String, HiloServidor> mapaClientes;
@@ -14,9 +12,7 @@ public class ListaClientes {
 	public ListaClientes(){
 		mapaClientes = new HashMap<String, HiloServidor>();
 	}
-	
-	/* ======================== Métodos Básicos ========================== */
-	
+		
 	public int getClientesConectados() {
 		return mapaClientes.size();
 	}
@@ -29,9 +25,6 @@ public class ListaClientes {
 		mapaClientes.remove(nombre);
 	}
 	
-	/**
-	 * Devuelve true si un cliente se encuentra en la lista.
-	 */
 	public boolean yaEstaDentro(String nombre) {
 		return mapaClientes.containsKey(nombre);
 	}
