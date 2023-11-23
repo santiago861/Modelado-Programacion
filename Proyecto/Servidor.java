@@ -14,7 +14,6 @@ public class Servidor {
 	public static ServerSocket servidor;
 	private static ListaClientes clientes;
 	
-	/* ======================== Principal ========================== */
 	
 	public static void main(String[] args) {
 		
@@ -36,7 +35,6 @@ public class Servidor {
         while(true) {}
     }
     
-    /* ======================== Métodos Básicos ========================== */
     
 	public static void imprimirConsola(String msg) {
 		vista.addText(msg);
@@ -69,7 +67,6 @@ public class Servidor {
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     
-    /* ======================== Métodos Avanzados ========================== */
     
     private static void iniciarServidor() throws IOException {
 		servidor = new ServerSocket(Constantes.PUERTO_SERVIDOR);
@@ -79,10 +76,7 @@ public class Servidor {
 		vista.addText("<SERVER> Servidor iniciado en "+InetAddress.getLocalHost().getHostAddress());
     }
     
-    /**
-     * Acepta los clientes nuevos en un hilo que los gestiona.
-     * Rechaza mediante un mensaje si el servidor está lleno
-     */
+   
     private static void handleClient(){
     	try {
     		// Aceptamos el cliente.
@@ -94,21 +88,14 @@ public class Servidor {
     	}catch(IOException e) { /* Cuando no hay nadie intentando conectar */ }
     }
     
-    /**
-     * Añade un cliente al HashMap de clientes.
-     * Hemos elegido HashMap para almacenar su nick como clave.
-     * @param thread
-     */
+    
     public static void meterCliente(HiloServidor thread) {
     	clientes.add(thread.getNombre(), thread);
     	clientes.actualizarConectados();
     	vista.setClientesConectados(clientes.getClientesConectados());
     }
     
-    /**
-     * Saca un cliente de la lista de clientes.
-     * @param nombre
-     */
+    
     public static void sacarCliente(String nombre) {
     	clientes.remove(nombre);
     	clientes.actualizarConectados();
