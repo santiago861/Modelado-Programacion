@@ -12,11 +12,6 @@ public class ListaClientes {
 	public ListaClientes(){
 		mapaClientes = new HashMap<String, HiloServidor>();
 	}
-<<<<<<< HEAD
-		
-=======
-	
->>>>>>> 8430d26d47edcdf1b7c35c8b65f5c07a38a68ca7
 	public int getClientesConectados() {
 		return mapaClientes.size();
 	}
