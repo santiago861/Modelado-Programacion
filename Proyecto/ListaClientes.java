@@ -15,8 +15,6 @@ public class ListaClientes {
 		mapaClientes = new HashMap<String, HiloServidor>();
 	}
 	
-	/* ======================== Métodos Básicos ========================== */
-	
 	public int getClientesConectados() {
 		return mapaClientes.size();
 	}
@@ -29,10 +27,42 @@ public class ListaClientes {
 		mapaClientes.remove(nombre);
 	}
 	
-	/**
-	 * Devuelve true si un cliente se encuentra en la lista.
-	 */
 	public boolean yaEstaDentro(String nombre) {
 		return mapaClientes.containsKey(nombre);
+	}
+	
+	public String getListaClientes() {
+		StringBuilder clientes = new StringBuilder(250);
+		
+		// Recorremos las claves (nombres) de los clientes
+		Set<String> claves = mapaClientes.keySet();
+		for (String clave : claves) {
+		   clientes.append(clave + ", ");
+		}
+		
+		// Al final quitamos la coma e imprimimos punto
+		clientes.setLength(clientes.length()-2);
+		clientes.append(".");
+				
+		return clientes.toString().trim();
+	}
+	
+	public void actualizarConectados() {
+    	emitirATodos(Constantes.CODIGO_ACTUALIZAR_CONECTADOS);
+    	emitirATodos(getClientesConectados() + "");
+    }
+	
+	public void desconectarTodos() {
+		Set<Map.Entry<String, HiloServidor>> set = mapaClientes.entrySet();
+		for (@SuppressWarnings("rawtypes") Entry entry : set) {
+			((HiloServidor) entry.getValue()).cerrarConexion();
+		}
+	}
+	
+	public void emitirATodos(String msg) {
+		Set<Map.Entry<String, HiloServidor>> set = mapaClientes.entrySet();
+		for (@SuppressWarnings("rawtypes") Entry entry : set) {
+		   ((HiloServidor) entry.getValue()).enviarTCP(msg);
+		}
 	}
 }
