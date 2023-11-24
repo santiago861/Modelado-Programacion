@@ -10,10 +10,10 @@ import javax.swing.JOptionPane;
 public class Cliente {
 	
 	private static JFrame ventana;
-	private static VistaCliente vista;
+	private static InterfazCliente vista;
 	private static ClienteController controlador;
 	private static Socket cliente;
-	private static UtilidadesCliente utilidades;
+	private static AccionCliente utilidades;
 	
 	public static void main(String[] args) {
 		
@@ -43,7 +43,7 @@ public class Cliente {
 	private static void configurarVentana() {
 
         ventana = new JFrame("Cliente de chat");
-        vista = new VistaCliente(ventana);
+        vista = new InterfazCliente(ventana);
         controlador = new ClienteController(vista);
 
         ventana.setContentPane(vista);
@@ -62,7 +62,7 @@ public class Cliente {
     			throw new IOException("Nickname no válido.");
     		cliente = new Socket();
     		cliente.connect(new InetSocketAddress(host, Integer.parseInt(puerto)), 5000);
-    		utilidades = new UtilidadesCliente(cliente, vista, controlador);
+    		utilidades = new AccionCliente(cliente, vista, controlador);
     		iniciarChat(nickname);
 			
     	}catch(NumberFormatException e) {

@@ -7,9 +7,9 @@ import java.awt.event.ActionListener;
 public class ClienteController implements ActionListener {
 
 	private AccionCliente cliente;
-	private VistaCliente vista;
+	private InterfazCliente vista;
 	
-	public ClienteController(VistaCliente vista) {
+	public ClienteController(InterfazCliente vista) {
 		this.vista = vista;
 	}
 	public void setCliente(AccionCliente cliente) {

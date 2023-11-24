@@ -6,14 +6,14 @@ import java.net.Socket;
 
 public class AccionCliente {
 
-	private VistaCliente vista;
+	private InterfazCliente vista;
 	private ClienteController controlador;
 	private Socket cliente;
 	
 	private BufferedReader entrada;
 	private PrintWriter salida;
 	
-	public AccionCliente(Socket cliente, VistaCliente vista, ClienteController controlador) throws IOException {
+	public AccionCliente(Socket cliente, VistaInterfazClienteCliente vista, ClienteController controlador) throws IOException {
 		this.cliente = cliente;
 		this.vista = vista;
 		this.controlador = controlador;
