@@ -8,9 +8,9 @@ import java.net.ServerSocket;
  */
 public class ServidorController implements ActionListener {
 
-	private VistaServidor vista;
+	private InterfazServidor vista;
 	private ServerSocket servidor;
-	public ServidorController(VistaServidor vista) {
+	public ServidorController(InterfazServidor vista) {
 		this.vista = vista;
 	}
 	public void setServidor(ServerSocket servidor) {

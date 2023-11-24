@@ -9,7 +9,7 @@ import javax.swing.JFrame;
 public class Servidor {
 	
 	private static JFrame ventana;
-	private static VistaServidor vista;
+	private static InterfazServidor vista;
 	private static ClienteController controlador;
 	public static ServerSocket servidor;
 	private static ListaClientes clientes;
@@ -50,7 +50,7 @@ public class Servidor {
 	private static void configurarVentana() {
 
         ventana = new JFrame("Servidor de chat");
-        vista = new VistaServidor();
+        vista = new InterfazServidor();
         controlador = new ClienteController(vista);
         
         ventana.setContentPane(vista);

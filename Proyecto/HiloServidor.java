@@ -11,14 +11,14 @@ import java.net.SocketTimeoutException;
 public class HiloServidor extends Thread {
 
 	private Socket cliente;
-	private VistaServidor vista;
+	private InterfazServidor vista;
 	
 	private BufferedReader entrada;
 	private PrintWriter salida;	
 	
 	private String nombre;
 	
-	public HiloServidor(VistaServidor vista, Socket cliente) throws IOException {
+	public HiloServidor(InterfazServidor vista, Socket cliente) throws IOException {
 		this.vista = vista;
 		this.cliente = cliente;
 		this.cliente.setSoTimeout(5000);
