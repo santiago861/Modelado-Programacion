@@ -6,13 +6,13 @@ import java.awt.event.ActionListener;
  */
 public class ClienteController implements ActionListener {
 
-	private UtilidadesCliente cliente;
+	private AccionCliente cliente;
 	private VistaCliente vista;
 	
 	public ClienteController(VistaCliente vista) {
 		this.vista = vista;
 	}
-	public void setCliente(UtilidadesCliente cliente) {
+	public void setCliente(AccionCliente cliente) {
 		this.cliente = cliente;
 	}
 	@Override

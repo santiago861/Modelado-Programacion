@@ -10,7 +10,7 @@ public class Servidor {
 	
 	private static JFrame ventana;
 	private static VistaServidor vista;
-	private static ControladorServidor controlador;
+	private static ClienteController controlador;
 	public static ServerSocket servidor;
 	private static ListaClientes clientes;
 	
@@ -51,7 +51,7 @@ public class Servidor {
 
         ventana = new JFrame("Servidor de chat");
         vista = new VistaServidor();
-        controlador = new ControladorServidor(vista);
+        controlador = new ClienteController(vista);
         
         ventana.setContentPane(vista);
         vista.setControlador(controlador);

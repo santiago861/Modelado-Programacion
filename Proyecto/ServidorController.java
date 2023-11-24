@@ -3,7 +3,6 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.net.ServerSocket;
 
-
 /**
  * Controlador de botones para el servidor.
  */

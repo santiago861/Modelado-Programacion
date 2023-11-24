@@ -11,7 +11,7 @@ public class Cliente {
 	
 	private static JFrame ventana;
 	private static VistaCliente vista;
-	private static ControladorCliente controlador;
+	private static ClienteController controlador;
 	private static Socket cliente;
 	private static UtilidadesCliente utilidades;
 	
@@ -44,7 +44,7 @@ public class Cliente {
 
         ventana = new JFrame("Cliente de chat");
         vista = new VistaCliente(ventana);
-        controlador = new ControladorCliente(vista);
+        controlador = new ClienteController(vista);
 
         ventana.setContentPane(vista);
         vista.setControlador(controlador);
