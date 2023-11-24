@@ -13,7 +13,7 @@ public class AccionCliente {
 	private BufferedReader entrada;
 	private PrintWriter salida;
 	
-	public AccionCliente(Socket cliente, VistaInterfazClienteCliente vista, ClienteController controlador) throws IOException {
+	public AccionCliente(Socket cliente, InterfazCliente vista, ClienteController controlador) throws IOException {
 		this.cliente = cliente;
 		this.vista = vista;
 		this.controlador = controlador;
